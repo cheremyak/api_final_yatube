@@ -1,6 +1,5 @@
 from rest_framework import serializers
 
-
 from posts.models import Post, Group, Comment, User, Follow
 
 
@@ -40,8 +39,9 @@ class FollowSerializer(serializers.ModelSerializer):
         slug_field='username',
         default=serializers.CurrentUserDefault()
     )
+
     following = serializers.SlugRelatedField(
-        queryset=User.objects.order_by('follower'),
+        queryset=User.objects.order_by('username'),
         slug_field='username'
     )
 
